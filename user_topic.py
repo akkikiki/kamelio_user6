@@ -1,4 +1,5 @@
 # coding:utf-8
+# python user_topic.py > user_topic_p.txt
 
 from collections import defaultdict
 
@@ -6,6 +7,7 @@ from collections import defaultdict
 def main():
     # user_id
     user_id2freq = defaultdict(int)
+    # cut -d"," -f1 training_data.csv | sort | uniq -c > user_article.txt
     fin = open("user_article.txt", "r")
     for line in fin:
         freq, user_id = line.strip().split(" ")
@@ -15,6 +17,7 @@ def main():
     user_id2topic = defaultdict(set)
     user_id2read_freq = defaultdict(lambda: defaultdict(int))
     user_id2share_freq = defaultdict(lambda: defaultdict(int))
+    # cut -d"," -f1,3,4 training_data.csv | sort | uniq -c > user_topic_type.txt
     fin = open("user_topic_type.txt", "r")
     for line in fin:
         line = line.strip().split(" ")
