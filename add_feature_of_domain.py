@@ -38,3 +38,6 @@ for row in submit_reader:
         continue
     print ",".join(row)+","+str(d2f.get(row[1], 0))
 
+submitdata.close()
+contentsdata.close()
+
