@@ -1,4 +1,6 @@
 """
+if you use this script, you must created domain_freq.dump by domain_freq.py
+
 python add_feature_of_domain.py submission_data_v2.csv contentsdata.csv domain_freq.dump 
 """
 
