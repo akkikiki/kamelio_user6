@@ -21,7 +21,7 @@ for row in reader:
     if re_digit.match(row[0]):
         num = urlopen("http://api.b.st-hatena.com/entry.count?url="+row[2]).read()
         if num=="":
-    num="0"
+             num="0"
         d2h[row[0]] = int(num)
 
 
