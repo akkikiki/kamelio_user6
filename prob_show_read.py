@@ -1,5 +1,9 @@
 #!usr/bin/python
 #coding:utf-8
+"""
+記事の人気度（P(read|show)の条件確率）の計算
+python prob_show_read.py training_data.csv > prob.temp
+"""
     
 import sys
 from collections import defaultdict
