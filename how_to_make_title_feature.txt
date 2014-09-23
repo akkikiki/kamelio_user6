@@ -1,0 +1,13 @@
+"title"素性の作り方
+
+1. make_read_id_title_count.py
+readされた記事にたいして、[id,title,readの回数]のcsvファイル(id_title_readcount.csv)を作成
+
+2. make_read_titlenoun_tf.py
+id_title_readcount.csv から、各タイトルの名詞のtf値を計算し、top_freq_title_noun.csv　に昇順で["名詞", 回数]を格納
+
+3. cut_top_freq_title_noun.py
+top_freq_title_noun.csv において役に立たなそうな名詞を除去し、一番頻度の高い単語の出現回数で各単語の回数を正規化し、top_freq_title_noun_reg.dump に　{”名詞”:スコア,....}の形で格納
+
+4.make_id_noun_set.py
+コンテンツデータから、id_noun_set.dumpにid に対して、タイトル中の名詞のセットをdictに格納
