@@ -1,9 +1,10 @@
 # coding:utf-8
 
 import sys
+sys.path.append("/Users/ryosuke/Downloads/libsvm-3.18/python")
 from svm import *
 from svmutil import *
-
+import pickle
 
 def get_labels():
     label_list = []
@@ -40,17 +41,26 @@ def main():
     training_feature_list = []
     test_feature_list = []
     for fname in sys.argv[1:]:
-        if "training" in fname:
+        if "train" in fname:
             training_feature_list = get_features(fname, training_feature_list)
         elif "submission" in fname:
             test_feature_list = get_features(fname, test_feature_list)
     problem = svm_problem(label_list, training_feature_list)
-    parameter = svm_parameter()
+    parameter = svm_parameter("-s 2")
     model = svm_train(problem, parameter)
     predict_labels, accuracy, values = svm_predict(label_list, test_feature_list, model)
     svm_save_model("test.model", model)
-    print predict_labels
-
+    #print predict_labels
+    #pickle.dump(predict_labels, open("plabel.dump", "w"))
+    count = 0
+    for line in open("submission_data_v2.csv"):
+        if "usr_id" in line:
+            print line.strip()+',"Answer"'
+            continue
+        if predict_labels[count] == 1.0:
+            print line.strip()+',"article_read"'
+        else:
+            print line.strip()+',"NULL"'
 
 if __name__ == '__main__':
     main()
